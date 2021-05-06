@@ -57,6 +57,14 @@ app.get("/home", (req, res) => {
     res.redirect("/");
   }
 });
+
+app.get("/profile", (req, res) => {
+  if (req.cookies.didlogin == "true") {
+    controller.profileComponent(req, res);
+  } else {
+    res.redirect("/");
+  }
+});
 app.get("/logout", (req, res) => {
   controller.logout(req, res);
 });

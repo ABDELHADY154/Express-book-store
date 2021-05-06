@@ -60,11 +60,6 @@ exports.registerForm = (req, res, loggedIn) => {
     fs.writeFile("users.json", JSON.stringify(users), function (err) {
       if (err) return console.log(err);
     });
-    loggedIn = true;
-    // res.layout("home", {
-    //   layout: "index",
-    //   loggedIn: true,
-    // });
     res.redirect("/home");
   } else {
     res.layout("register", {
@@ -122,6 +117,17 @@ exports.homeComponent = (req, res) => {
         books: books,
       });
       // users.push(JSON.parse(data));
+    }
+  });
+};
+
+exports.profileComponent = (req, res) => {
+  users.forEach(data => {
+    if (data.email == req.cookies.userData.email) {
+      res.layout("profile", {
+        layout: "authIndex",
+        user: data,
+      });
     }
   });
 };
