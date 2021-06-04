@@ -14,5 +14,19 @@
   </head>
   <body>
     <%- include('./partials/header'); -%> <%- yield %>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .then(registeration => {
+              console.log("SW registered", registeration);
+            })
+            .catch(err => {
+              console.error("Reg failes", err);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

@@ -13,12 +13,18 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "cross-fetch": "^3.1.4",
     "ejs": "^3.1.6",
     "ejs-layout": "^1.0.15",
     "ejs-yield": "^1.0.0",
+    "es6-promise": "^4.2.8",
     "express": "^4.17.1",
     "fs": "*",
-    "nodemon": "^2.0.7"
+    "isomorphic-fetch": "^3.0.0",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.7",
+    "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",

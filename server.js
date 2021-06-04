@@ -15,7 +15,9 @@ app.get("/", (req, res) => {
     controller.landingComponent(req, res);
   }
 });
-
+app.get("/sw.js", (req, res) => {
+  res.sendFile(__dirname + "/sw.js");
+});
 app
   .route("/login")
   .get((req, res) => {
