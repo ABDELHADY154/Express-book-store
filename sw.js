@@ -1,14 +1,5 @@
-const CACHE = [
-  "/",
-  "/login",
-  "/register",
-  "/style",
-  "/error",
-  "/offline",
-  // "/logout",
-];
+const CACHE = ["/", "/login", "/register", "/style", "/error", "/offline"];
 const cacheName = "book store caches";
-// const cacheName2 = "auth book store caches";
 self.addEventListener("install", event => {
   console.log("Trying to install service worker and cache site assets");
   event.waitUntil(
@@ -48,7 +39,7 @@ self.addEventListener("fetch", event => {
         }
       }),
   );
-}); //eventListener fetch
+});
 self.addEventListener("activate", event => {
   console.log("service worker b-activate");
 });
