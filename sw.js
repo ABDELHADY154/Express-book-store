@@ -1,13 +1,14 @@
 const CACHE = [
   "/",
-  "/styles/style.css",
-  "/images/Placeholder_book.svg",
-  "/pages/404.html",
-  "/pages/offline.html",
   "/login",
+  "/register",
+  "/style",
+  "/error",
+  "/offline",
+  // "/logout",
 ];
-const cacheName = "tryout-v1";
-
+const cacheName = "book store caches";
+// const cacheName2 = "auth book store caches";
 self.addEventListener("install", event => {
   console.log("Trying to install service worker and cache site assets");
   event.waitUntil(
@@ -28,19 +29,23 @@ self.addEventListener("fetch", event => {
         console.log("getting request for ", event.request.url);
         return fetch(event.request).then(response => {
           if (response.status === 404) {
-            return caches.match("/pages/404.html");
+            return caches.match("/error");
           }
           return caches.open(cacheName).then(cache => {
-            // we will add the response to request url
-            //we can use the put request method
             cache.put(event.request.url, response.clone());
             return response;
           });
         });
       })
-      .catch(() => {
-        console.log("youre offline");
-        return caches.match("/pages/offline.html");
+      .catch(err => {
+        if (
+          event.request.url == "http://localhost:5000/loginForm" ||
+          event.request.url == "http://localhost:5000/registerForm"
+        ) {
+          return caches.match("/offline");
+        } else {
+          return caches.match("/error");
+        }
       }),
   );
 }); //eventListener fetch

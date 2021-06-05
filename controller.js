@@ -71,7 +71,7 @@ exports.registerForm = (req, res, loggedIn) => {
 };
 
 exports.logout = (req, res) => {
-  res.cookie("didlogin", "false");
+  res.cookie("didlogin", "");
   res.clearCookie("userData");
   res.redirect("/");
 };
