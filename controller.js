@@ -16,12 +16,12 @@ fs.readFile("users.json", function (err, data) {
 });
 
 // Landing Page
-exports.landingComponent = (req, res) => {
-  res.layout("landing", {
-    layout: "index",
-    loggedIn: false,
-  });
-};
+// exports.landingComponent = (req, res) => {
+//   res.layout("landing", {
+//     layout: "index",
+//     loggedIn: false,
+//   });
+// };
 
 // Authentication
 exports.loginComponent = (req, res) => {

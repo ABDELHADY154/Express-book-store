@@ -7,6 +7,7 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 app.use(require("ejs-yield"));
 bodyParser = bodyParser.urlencoded({ extended: false });
+
 app.get("/sw.js", (req, res) => {
   res.sendFile(__dirname + "/sw.js");
 });
@@ -14,11 +15,16 @@ app.get("/style", (req, res) => {
   res.sendFile(__dirname + "/dist/tailwind.css");
 });
 app.get("/", (req, res) => {
+  console.log("hady");
   if (req.cookies.didlogin == "true") {
     res.redirect("/home");
-  } //else {
-  controller.landingComponent(req, res);
-  // }
+  } else {
+    // controller.landingComponent(req, res);
+    res.layout("landing", {
+      layout: "index",
+      loggedIn: false,
+    });
+  }
 });
 app.get("/error", (req, res) => {
   // res.statusCode = 404;
@@ -76,10 +82,9 @@ app.post("/registerForm", bodyParser, (req, res) => {
 app.get("/home", (req, res) => {
   if (req.cookies.didlogin == "true") {
     controller.homeComponent(req, res);
+  } else {
+    res.redirect("/");
   }
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 app.get("/profile", (req, res) => {
